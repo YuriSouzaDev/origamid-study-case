@@ -3,8 +3,8 @@ import InputState from './Hooks/exercicio/InputState';
 
 function App() {
   const [data, setData] = React.useState(null);
-  const [inicio, setInicio] = React.useState('');
-  const [final, setFinal] = React.useState('');
+  const [inicio, setInicio] = React.useState<string | null>('');
+  const [final, setFinal] = React.useState<string | null>('');
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -24,11 +24,36 @@ function App() {
     };
 
     fetchData();
-  }, []);
+  }, [inicio, final]);
+
+  const hadleInicio: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setInicio(event.currentTarget.value);
+  };
+
+  const hadleFinal: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setFinal(event.currentTarget.value);
+  };
 
   return (
-    <div>
-      <InputState type="date" label="Data de Inicio" />
+    <div style={{ display: 'flex', gap: '1rem' }}>
+      <div>
+        {inicio}
+        <InputState
+          type="date"
+          id="inputInicio"
+          label="Data Inicial"
+          onChange={hadleInicio}
+        />
+      </div>
+      <div>
+        {final}
+        <InputState
+          type="date"
+          id="inputFinal"
+          label="Data Final"
+          onChange={hadleFinal}
+        />
+      </div>
     </div>
   );
 }
