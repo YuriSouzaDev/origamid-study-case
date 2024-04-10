@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './Hooks/useContext/aula/App';
+import App from './Hooks/useContext/exercicio/App';
 import './main.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
